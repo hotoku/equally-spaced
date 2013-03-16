@@ -42,3 +42,6 @@
 	(if (< (point) (point-max))
 	    (open-line equally-spaced-width))
 	(forward-line equally-spaced-width)))))
+
+
+(provide 'equally-spaced)
