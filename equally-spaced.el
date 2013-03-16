@@ -7,9 +7,10 @@
 (defun equally-spaced-contents-line-p ()
   (not (equally-spaced-blank-line-p)))
 (defun equally-spaced-goto-next (predicate)
-  (while (and (< (point) (point-max))
-	      (not (funcall predicate)))
-    (forward-line)))
+  (let ((buf 0))
+    (while (and (= buf 0)
+		(not (funcall predicate)))
+      (setq buf (forward-line)))))
 (defun equally-spaced-goto-top ()
   (goto-char (point-min))
   (equally-spaced-goto-next
@@ -28,20 +29,21 @@
     (goto-char (point-max))
     (insert "\n")
     (equally-spaced-goto-top)
-    (while (not (= (point) (point-max)))
-      (let* ((begin-pos
-	      (progn
-		(equally-spaced-goto-next-blank)
-		(point)))
-	     (end-pos
-	      (progn
-		(equally-spaced-goto-next-contents)
-		(point))))
-	(goto-char begin-pos)
-	(delete-region begin-pos end-pos)
-	(if (< (point) (point-max))
-	    (open-line equally-spaced-width))
-	(forward-line equally-spaced-width)))))
+    (let ((buf 0))
+      (while (= buf 0)
+	(let* ((begin-pos
+		(progn
+		  (equally-spaced-goto-next-blank)
+		  (point)))
+	       (end-pos
+		(progn
+		  (equally-spaced-goto-next-contents)
+		  (point))))
+	  (goto-char begin-pos)
+	  (delete-region begin-pos end-pos)
+	  (if (< (point) (point-max))
+	      (open-line equally-spaced-width))
+	  (setq buf (forward-line equally-spaced-width)))))))
 
 
 
