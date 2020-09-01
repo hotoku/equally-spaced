@@ -10,6 +10,7 @@
 
 (defcustom equally-spaced-width 2
 	"Buffer between lines."
+	:risky nil
 	:safe t)
 
 
