@@ -10,8 +10,9 @@
 
 (defcustom equally-spaced-width 2
 	"Buffer between lines."
-	:risky nil
-	:safe t)
+	:safe t
+  :group 'equally-spaced
+  :type 'integer)
 
 
 (defun equally-spaced-blank-line-p ()
