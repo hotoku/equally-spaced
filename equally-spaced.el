@@ -9,7 +9,7 @@
 
 
 (defcustom equally-spaced-width 2
-	"Buffer between lines."
+	"Number of empty lines inserted."
 	:safe t
   :group 'equally-spaced
   :type 'integer)
