@@ -10,7 +10,8 @@
 
 (defcustom equally-spaced-width 2
 	"Number of empty lines inserted."
-	:safe t
+	:safe '(1 2 3 4 5 6 7 8)
+	:risky nil
   :group 'equally-spaced
   :type 'integer)
 
